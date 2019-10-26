@@ -1,0 +1,33 @@
+syntax = "proto3";
+package user;
+
+service User {
+    rpc Set (UserMessage) returns (UserId);
+    rpc Get (UserId) returns (UserMessage);
+}
+
+enum Status {
+    Unknown = 0;
+    Active = 1;
+    Blocked = 2;
+}
+
+message UserMessage {
+    UserId id = 1;
+    string name = 2;
+    uint32 age = 3;
+    NatNumber childCount = 4;
+    NatNumber catsCount = 5;
+    // repeated UserMessage children = 3;
+
+    //Status status = 3;
+    //UserId user_id =4;
+}
+
+message UserId {
+    uint64 value = 1;
+}
+
+message NatNumber {
+    uint64 value = 1;
+}
